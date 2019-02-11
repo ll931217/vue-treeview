@@ -14,7 +14,7 @@ Add this to your `main.js` file:
 
 ```
 import Vue from 'vue'
-import TreeView from 'vue-treeview'
+import TreeView from '@ll931217/vue-treeview'
 
 Vue.use(TreeView)
 ```
