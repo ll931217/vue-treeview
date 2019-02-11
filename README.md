@@ -120,3 +120,8 @@ The treeview takes in the prop `tree`, which is in the following structure:
 }]
 
 ```
+
+## Upcoming Features
+
+[-] Add `router-link` function to layer with `value` key
+[-] Increase further customization with `style` prop
