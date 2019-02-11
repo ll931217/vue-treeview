@@ -13,7 +13,7 @@ library.add(faTruckLoading)
 
 const Tree = {
   install(Vue) {
-    Vue.component('treeview', TreeView)
+    Vue.component('tree-view', TreeView)
     Vue.component('fa', FontAwesomeIcon)
   }
 }

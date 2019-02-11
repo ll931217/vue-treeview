@@ -1,91 +1,73 @@
 <template lang="pug">
-  ul
-    li
-      div(@click="toggle", :class="{ link: (nodes.length > 0) }").branch
-        template(v-if="nodes.length > 0")
-          template(v-if="open")
-            fa(icon="minus-square").minus-square
-          template(v-else)
-            fa(icon="plus-square").plus-square
-          span {{ text }}
-        template(v-else-if="value")
-          span(@click="").value
-            fa(icon="truck-loading")
-            | {{ text }}
-        template(v-else)
-          span {{ text }}
-      treeview(v-for="(t, i) in nodes", :nodes="t.nodes", :text="t.text", :value="t.value", :class="{ open }", v-if="nodes", :key="i").node
+  #tree
+    treeview(v-for="(t, i) in tree", :text="t.text", :nodes="t.nodes", :value="t.value", :key="i").treeview
 </template>
 
 <script>
-  export default {
-    name: 'TreeView',
-    props: {
-      text: {
-        type: String,
-        default: () => ''
-      },
-      nodes: {
-        type: Array,
-        default: () => []
-      },
-      value: {
-        type: String,
-        default: () => ''
-      }
-    },
-    data () {
-      return {
-        open: false
-      }
-    },
-    methods: {
-      toggle () {
-        this.open = !this.open
-      }
+import branch from './branch'
+export default {
+  name: "TreeView",
+  props: {
+    tree: {
+      type: Array,
+      default: () => []
     }
+  },
+  components: {
+    treeview: branch
   }
+}
 </script>
 
-<style lang="sass" scoped>
-*
-  user-select: none
+<style lang="sass">
+$border: 2px dashed #607d8b
 
-svg
-  margin-right: .5em
+#tree
+  background-color: #36404a
+  padding: 20px
+  border: none
+  border-radius: 10px
+  box-shadow: 2px 2px 7px 3px #36404a
 
-ul
+.treeview
+  font-family: "Roboto Mono"
+  font-weight: Bold
+
+  &> li > ul.first
+    li
+      &:before
+        display: block
+
+  ul
+    &.last
+      li:after
+        display: none
+    li
+      position: relative
+      &:after
+        position: absolute
+        content: ""
+        top: 9px
+        left: -15px
+        border-left: $border
+        border-top: $border
+        border-radius: 5px 0 0 0
+        width: 13px
+        height: 89%
+
+      &:before
+        content: ""
+        position: absolute
+        top: -6px
+        left: -15px
+        border-left: $border
+        border-bottom: $border
+        border-radius: 0 0 0 5px
+        width: 13px
+        height: 15px
+
+@font-face
+  font-family: "Roboto Mono"
   font-weight: bold
-  list-style: none
-  margin-bottom: 0
-  padding-left: 20px
-  white-space: nowrap
-
-.branch
-  // background-color: #36404a
-  color: white
-  cursor: pointer
-  display: inline-flex
-  align-items: center
-
-.minus-square
-  color: orange
-
-.plus-square
-  color: lightgreen
-
-.value
-  color: lightblue
-
-.node
-  height: 0
-  opacity: 0
-  visibility: hidden
-  transition: all .5s ease-in-out
-  text-transform: capitalize
-
-  &.open
-    height: 100%
-    opacity: 1
-    visibility: visible
+  src: url("./assets/fonts/RobotoMono-Bold.ttf")
 </style>
