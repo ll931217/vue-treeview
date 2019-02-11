@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ll931217/vue-treeview"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +15,8 @@
     "vuejs"
   ],
   "author": "Liang-Shih Lin (liangshihlin@gmail.com)",
+  "homepage": "https://github.com/ll931217/vue-treeview",
+  "issues": "https://github.com/ll931217/vue-treeview/issues",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
