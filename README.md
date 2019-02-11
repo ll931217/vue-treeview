@@ -4,11 +4,11 @@
 
 Install the package into your project:
 
-    npm install --save vue-treeview
+    npm install --save @ll931217/vue-treeview
 
 or
 
-    yarn add vue-treeview
+    yarn add @ll931217/vue-treeview
 
 Add this to your `main.js` file:
 
