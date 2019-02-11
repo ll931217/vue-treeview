@@ -1,0 +1,90 @@
+[{
+  "text": "B1",
+  "nodes": [{
+    "text": "FEOL",
+    "nodes": [{
+      "text": "SPUTTER",
+      "nodes": [{
+        "text": "003",
+        "location": "B1-SPU-03"
+      }]
+    }, {
+      "text": "COATING"
+    }, {
+      "text": "EXPOSING",
+      "nodes": [{
+        "text": "001",
+        "location": "B1-EXP-01"
+      }, {
+        "text": "002",
+        "location": "B1-EXP-02"
+      }]
+    }, {
+      "text": "DEVELOP"
+    }, {
+      "text": "PLATING"
+    }, {
+      "text": "BOND",
+      "nodes": [{
+        "text": "005",
+        "location": "B1-BON-05"
+      }]
+    }]
+  }, {
+    "text": "BEOL",
+    "nodes": [{
+      "text": "GRINDING"
+    }, {
+      "text": "BALLDROP"
+    }, {
+      "text": "PROBING"
+    }, {
+      "text": "BACKCOATING"
+    }, {
+      "text": "MARKING"
+    }, {
+      "text": "SORTING"
+    }, {
+      "text": "TUG"
+    }]
+  }]
+}, {
+  "text": "B2",
+  "nodes": [{
+    "text": "FEOL",
+    "nodes": [{
+      "text": "SPUTTER"
+    }, {
+      "text": "COATING"
+    }, {
+      "text": "EXPOSING"
+    }, {
+      "text": "DEVELOP"
+    }, {
+      "text": "PLATING"
+    }, {
+      "text": "BOND"
+    }]
+  }, {
+    "text": "BEOL",
+    "nodes": [{
+      "text": "GRINDING"
+    }, {
+      "text": "BALLDROP"
+    }, {
+      "text": "PROBING"
+    }, {
+      "text": "BACKCOATING",
+      "nodes": [{
+        "text": "006",
+        "location": "B2-BAC-06"
+      }]
+    }, {
+      "text": "MARKING"
+    }, {
+      "text": "SORTING"
+    }, {
+      "text": "TUG"
+    }]
+  }]
+}]

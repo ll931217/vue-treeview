@@ -1,0 +1,15 @@
+{
+  "name": "vue-treeview",
+  "version": "0.0.1",
+  "description": "A TreeView component for Vue.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "treeview",
+    "vuejs"
+  ],
+  "author": "Liang-Shih Lin (liangshihlin@gmail.com)",
+  "license": "MIT"
+}
