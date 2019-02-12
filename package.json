@@ -1,6 +1,6 @@
 {
   "name": "@ll931217/vue-treeview",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,7 @@
     "vuejs"
   ],
   "author": "Liang-Shih Lin (liangshihlin@gmail.com)",
-  "homepage": "https://github.com/ll931217/vue-treeview",
+  "homepage": "https://ll931217.github.io/vue-treeview",
   "issues": "https://github.com/ll931217/vue-treeview/issues",
   "license": "MIT",
   "dependencies": {
