@@ -1,6 +1,6 @@
 # TreeView for Vue.js
 
-![TreeView Site](https://github.com/ll931217/vue-treeview/raw/master/assets/img-2019-02-12-085645.png)
+<p align="center"><img align="center" style="width:250px" src="https://github.com/ll931217/vue-treeview/raw/master/assets/img-2019-02-12-085645.png" /></p>
 
 ## Usage
 
