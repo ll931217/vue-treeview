@@ -1,6 +1,6 @@
 # TreeView for Vue.js
 
-<p align="center"><img align="center" style="width:250px" src="https://media.giphy.com/media/fnGUkAxr8wLNNzIKtd/source.mp4" /></p>
+![Vue-TreeView](assets/preview.png)
 
 ## Usage
 
