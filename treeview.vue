@@ -1,16 +1,26 @@
 <template lang="pug">
   #tree
-    treeview(v-for="(t, i) in tree", :text="t.text", :nodes="t.nodes", :value="t.value", :key="i").treeview
+    treeview(v-for="(t, i) in tree", :text="t.text", :nodes="t.nodes", :type="t.type", :value="t.value", :closed="icons.closed", :opened="icons.opened", :defaultIcon="icons.default", :key="i").treeview
 </template>
 
 <script>
 import branch from './branch'
+
 export default {
-  name: "TreeView",
+  name: 'TreeView',
   props: {
     tree: {
       type: Array,
+      required: true,
       default: () => []
+    },
+    icons: {
+      type: Object,
+      default: () => ({
+        closed: "plus-square",
+        opened: "minus-square",
+        default: "truck-loading"
+      })
     }
   },
   components: {

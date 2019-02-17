@@ -1,15 +1,13 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faPlusSquare,
-  faMinusSquare,
-  faTruckLoading
-} from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import TreeView from './treeview.vue'
 
-library.add(faPlusSquare)
-library.add(faMinusSquare)
-library.add(faTruckLoading)
+library.add(fas)
+library.add(fab)
+library.add(far)
 
 const Tree = {
   install(Vue) {

@@ -4,17 +4,20 @@
       div(@click="toggle", :class="{ link: (nodes.length > 0) }").branch
         template(v-if="nodes.length > 0")
           template(v-if="open")
-            fa(icon="minus-square").minus-square
+            fa(:icon="opened").minus-square
           template(v-else)
-            fa(icon="plus-square").plus-square
+            fa(:icon="closed").plus-square
           span {{ text }}
         template(v-else-if="value")
-          span(@click="").value
-            fa(icon="truck-loading")
+          router-link(:to="{ name: value }", v-if="type === 'router-link'").value
+            fa(:icon="defaultIcon")
+            | {{ text }}
+          a(:href="value", target="_blank" v-else).value
+            fa(:icon="defaultIcon")
             | {{ text }}
         template(v-else)
           span {{ text }}
-      branch(v-for="(t, i) in nodes", :nodes="t.nodes", :text="t.text", :value="t.value", :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }", v-if="nodes", :key="i").node
+      branch(v-for="(t, i) in nodes", :nodes="t.nodes", :text="t.text", :type="t.type", :value="t.value", :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }", v-if="nodes", :closed="closed", :opened="opened", :defaultIcon="defaultIcon", :key="i").node
 </template>
 
 <script>
@@ -23,15 +26,29 @@
     props: {
       text: {
         type: String,
+        required: true,
         default: () => ''
       },
       nodes: {
         type: Array,
         default: () => []
       },
+      type: {
+        type: String,
+        default: () => ''
+      },
       value: {
         type: String,
         default: () => ''
+      },
+      closed: {
+        type: String | Object | Array
+      },
+      opened: {
+        type: String | Object | Array
+      },
+      defaultIcon: {
+        type: String | Object | Array
       }
     },
     data () {
