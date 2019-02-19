@@ -135,10 +135,10 @@ If you want to use custom icons, you can select them from [FontAwesome 5](https:
 
 First download their packages (Solid icons are already available):
 
-| Prop      | Type                 |
-| --------- | -------------------- |
-| tree      | `Array`              |
-| icons     | `String` \| `Object` |
+| Prop      | Type                 | Required |
+| --------- | -------------------- | -------- |
+| tree      | `Array`              | True     |
+| icons     | `String` \| `Object` | False    |
 
 ```vue
 <template>
@@ -171,12 +171,31 @@ export default {
 </script>
 ```
 
+Adding `.sync` to `:tree` would allow two-way binding for the tree data:
+
+```html
+<treeview :tree.sync="tree" />
+```
+
+Double-click the parent node will allow you to add new node to the tree, only if `editable` prop is passed with the `boolean` value of `true`:
+
+```html
+<treeview :tree.sync="tree" :editable="true" />
+```
+
+This can be used for checking user accounts:
+
+```html
+<treeview :tree.sync="tree" :editable="userAccount === 'ADMIN'" />
+```
+
 ## Upcoming Features
 
 - [ ] Increase further customization with `style` prop
 - [ ] Add draggable feature
-- [ ] Add option to create new child node on double click
+- [ ] Add edit button next to nodes
 
+- [x] Add option to create new child node on double click
 - [x] Add `router-link` function to layer with `value` key
 - [x] Change icons
 

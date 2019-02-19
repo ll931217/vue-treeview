@@ -1,6 +1,6 @@
 <template lang="pug">
   #tree
-    treeview(v-for="(t, i) in tree", :text="t.text", :nodes="t.nodes", :type="t.type", :value="t.value", :closed="icons.closed", :opened="icons.opened", :defaultIcon="icons.default", :key="i").treeview
+    treeview(v-for="(t, i) in tree", :text="t.text", :nodes.sync="t.nodes", :type="t.type", :value="t.value", :closed="icons.closed", :opened="icons.opened", :defaultIcon="icons.default", :editable="editable", :key="i").treeview
 </template>
 
 <script>
@@ -21,6 +21,10 @@ export default {
         opened: "minus-square",
         default: "truck-loading"
       })
+    },
+    editable: {
+      type: Boolean,
+      default: () => true
     }
   },
   components: {
