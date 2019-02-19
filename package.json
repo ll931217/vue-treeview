@@ -1,18 +1,17 @@
 {
   "name": "@ll931217/vue-treeview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ll931217/vue-treeview"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "treeview",
-    "vuejs"
+    "vuejs",
+    "vue-router",
+    "vue"
   ],
   "author": "Liang-Shih Lin (liangshihlin@gmail.com)",
   "homepage": "https://ll931217.github.io/vue-treeview",

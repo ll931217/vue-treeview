@@ -1,16 +1,18 @@
 <template lang="pug">
   ul
     li
-      .modal-container(v-show="creating", @click.self="cancel")
-        .modal-content
-          h1 Create New Node
-          form
-            input(type="text", v-model="newNode.text", placeholder="Text: Google")
-            input(type="text", v-model="newNode.type", placeholder="Type: link")
-            input(type="text", v-model="newNode.value", placeholder="Value: https://www.google.com")
-            .btn-group
-              button(type="button", @click="cancel").cancel Cancel
-              button(type="button", @click="save").save Save
+      transition(name="modal")
+        .modal-mask(v-show="creating", @click.self="cancel")
+          .modal-container
+            .modal-content
+              h1 Create New Node
+              form(@keyup.enter="save")
+                input(type="text", v-model="newNode.text", placeholder="Text: Google")
+                input(type="text", v-model="newNode.type", placeholder="Type: link")
+                input(type="text", v-model="newNode.value", placeholder="Value: https://www.google.com")
+                .btn-group
+                  button(type="button", @click="cancel").cancel Cancel
+                  button(type="button", @click="save").save Save
       .branch(@click="createNewNode", :class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
@@ -80,18 +82,15 @@
       }
     },
     methods: {
-      toggle () {
-        this.open = !this.open
-      },
-      checkLast (i) {
-        return (i + 1) === this.nodes.length
-      },
       createNewNode() {
         if (this.editable) {
           this.clicks++
           if (this.clicks === 1) {
             const app = this
-            this.timer = setTimeout(() => app.toggle(), 280);
+            this.timer = setTimeout(() => {
+              app.toggle()
+              app.clicks = 0
+            }, 280);
           } else {
             clearTimeout(this.timer)
             this.clicks = 0
@@ -104,30 +103,36 @@
       cancel () {
         this.creating = false
         this.newNode = {
-          text: "Google",
-          type: "link",
-          value: "https://www.google.com"
+          text: 'Google',
+          type: 'link',
+          value: 'https://www.google.com'
         }
+        this.$emit('creating', this.creating)
+        this.$emit('newNode', this.newNode)
       },
       save() {
         this.nodes.push(this.newNode)
-        this.$emit("nodes", this.nodes)
         this.creating = false
         this.newNode = {
           text: "Google",
           type: "link",
           value: "https://www.google.com"
         }
-        console.log("NEW NODE CREATED FOR " + this.text + " !")
+        this.$emit('creating', this.creating)
+        this.$emit('newNode', this.newNode)
+        this.$emit("nodes", this.nodes)
+      },
+      toggle () {
+        this.open = !this.open
+      },
+      checkLast (i) {
+        return (i + 1) === this.nodes.length
       }
     }
   }
 </script>
 
 <style lang="sass" scoped>
-*
-  user-select: none
-
 svg
   margin-right: .5em
 
@@ -166,68 +171,84 @@ ul
     opacity: 1
     visibility: visible
 
-.modal-container
-  align-items: center
+.modal-mask
   background-color: rgba(0, 0, 0, .7)
   cursor: pointer
   display: flex
-  height: 100%
-  width: 100%
   justify-content: center
-  position: absolute
+  align-items: center
+  position: fixed
+  z-index: 9998
   top: 0
   left: 0
-  z-index: 999
+  height: 100%
+  width: 100%
+  transition: opacity .3s ease;
 
-  .modal-content
+  .modal-container
     background-color: white
-    border-radius: 10px
-    color: black
+    border-radius: 2px
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33)
     cursor: default
-    margin: 1em
-    padding: 1em
-    width: 800px
+    font-family: Helvetica, Arial, sans-serif
+    margin: 40px auto 0
+    padding: 20px 30px
+    transition: all .3s ease
 
-    h1
-      margin: 0
+    .modal-content
+      border-radius: 10px
+      color: black
+      margin: 1em
+      padding: 1em
+      width: 800px
 
-    form
-      display: flex
-      flex-wrap: wrap
-      justify-content: flex-end
-      width: 100%
-      input
-        border: 1px solid rgba(0, 0, 0, .5)
-        border-radius: 5px
-        font-size: 16px
-        font-weight: bold
-        margin: 1em 0
-        padding: .2em .5em
-        height: 30px
+      h1
+        margin: 0
+
+      form
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-end
         width: 100%
-      button
-        background: none
-        border-radius: 5px
-        cursor: pointer
-        font-size: 16px
-        font-weight: bold
-        height: 30px
-        width: 80px
-        transition: all .3s ease-in-out
+        input
+          border: 1px solid rgba(0, 0, 0, .5)
+          border-radius: 5px
+          font-size: 16px
+          font-weight: bold
+          margin: 1em 0
+          padding: .2em .5em
+          height: 30px
+          width: 100%
+        button
+          background: none
+          border-radius: 5px
+          cursor: pointer
+          font-size: 16px
+          font-weight: bold
+          height: 30px
+          width: 80px
+          transition: all .3s ease-in-out
 
-        &.save
-          border: 3px solid #3498db
-          color: #3498db
-          margin-left: 1em
-          &:hover
-            background-color: #3498db
-        
-        &.cancel
-          border: 3px solid #f39c12
-          color: #f39c12
-          &:hover
-            background-color: #f39c12
+          &.save
+            border: 3px solid #3498db
+            color: #3498db
+            margin-left: 1em
+            &:hover
+              background-color: #3498db
+          
+          &.cancel
+            border: 3px solid #f39c12
+            color: #f39c12
+            &:hover
+              background-color: #f39c12
 
-        &:hover
-          color: white
+          &:hover
+            color: white
+
+.modal-enter, .modal-leave-active
+  opacity: 0
+
+.modal-enter .modal-container, .modal-leave-active .modal-container
+  transform: scale(1.1)
+
 </style>
