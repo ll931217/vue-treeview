@@ -12,6 +12,9 @@
           router-link(:to="{ name: value }", v-if="type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
+          nuxt-link(:to="{ name: value }", v-else-if="type === 'nuxt-link'").value
+            fa(:icon="defaultIcon")
+            | {{ text }}
           a(:href="value", target="_blank" v-else).value
             fa(:icon="defaultIcon")
             | {{ text }}

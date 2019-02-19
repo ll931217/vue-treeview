@@ -1,4 +1,16 @@
+
 # TreeView for Vue.js
+
+[![GitHub stars](https://img.shields.io/github/stars/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/issues)
+[![GitHub forks](https://img.shields.io/github/forks/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/network)
+[![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
+[![NPM Weekly Downloads](commit)](https://github.com/ll931217/vue-treeview)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
+[![Version](https://img.shields.io/npm/v/@ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
+
+[![NPM](https://nodei.co/npm/@ll931217/vue-treeview.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@ll931217/vue-treeview/)
+[![NPM](https://nodei.co/npm-dl/@ll931217/vue-treeview.png?months=1&height=3)](https://nodei.co/npm/@ll931217/vue-treeview/)
 
 ![Vue-TreeView](assets/preview.png)
 
@@ -23,8 +35,8 @@ Vue.use(TreeView)
 
 Then add this to where you want to use the treeview:
 
-```javascript
-tree-view(:tree="tree")
+```html
+<tree-view :tree="tree">
 ```
 
 The treeview takes in the prop `tree`, which is in the following structure:
@@ -161,6 +173,10 @@ export default {
 
 ## Upcoming Features
 
-- [x] Add `router-link` function to layer with `value` key
 - [ ] Increase further customization with `style` prop
+- [ ] Add draggable feature
+- [ ] Add option to create new child node on double click
+
+- [x] Add `router-link` function to layer with `value` key
 - [x] Change icons
+
