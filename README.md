@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/issues)
 [![GitHub forks](https://img.shields.io/github/forks/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/network)
 [![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
-[![NPM Weekly Downloads](commit)](https://github.com/ll931217/vue-treeview)
+[![NPM Weekly Downloads](https://img.shields.io/npm/dw/@ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
 [![Version](https://img.shields.io/npm/v/@ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
 
