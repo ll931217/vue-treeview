@@ -4,13 +4,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/issues)
 [![GitHub forks](https://img.shields.io/github/forks/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/network)
-[![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview)
 [![NPM Weekly Downloads](https://img.shields.io/npm/dw/@ll931217/vue-treeview.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 [![Version](https://img.shields.io/npm/v/@ll931217/vue-treeview.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
-
-[![NPM](https://nodei.co/npm/@ll931217/vue-treeview.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@ll931217/vue-treeview/)
-[![NPM](https://nodei.co/npm-dl/@ll931217/vue-treeview.png?months=1&height=3)](https://nodei.co/npm/@ll931217/vue-treeview/)
 
 ![Vue-TreeView](assets/preview.png)
 
@@ -50,8 +46,10 @@ The treeview takes in the prop `tree`, which is in the following structure:
       "text": "American Eskimo Dog",
       "nodes": [{
         "text": "Fluffy",
-        "type": "link",
-        "value": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/American_Eskimo_Dog_1.jpg/1920px-American_Eskimo_Dog_1.jpg"
+        "link": {
+          "type": "link", // Type `link` will create an `Anchor` tag
+          "value": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/American_Eskimo_Dog_1.jpg/1920px-American_Eskimo_Dog_1.jpg" // URL of the link
+        }
       }]
     }, {
       "text": "Bavarian Mountain Hound"
@@ -59,12 +57,18 @@ The treeview takes in the prop `tree`, which is in the following structure:
       "text": "Boxer",
       "nodes": [{
         "text": "Rip (Router-link)",
-        "type": "router-link",
-        "value": "d-ger-boxer-rip" // This is the name of the route
+        "link": {
+          "type": "router-link", // Type `router-link` will create a router-link, duh.
+          "key": "path", // key to use when giving it the value, router-link(:to="{ path: '/d-ger-boxer-rip' }")
+          "value": "/d-ger-boxer-rip"
+        }
       }, {
         "text": "Mackenzie (Router-link)",
-        "type": "router-link",
-        "value": "d-ger-boxer-machenzie" // This is the name of the route
+        "link": {
+          "type": "router-link",
+          "key": "name",
+          "value": "d-ger-boxer-machenzie"
+        }
       }]
     }, {
       "text": "Bullenbeisser"
@@ -74,8 +78,10 @@ The treeview takes in the prop `tree`, which is in the following structure:
       "text": "Deutsche Bracke",
       "nodes": [{
         "text": "Mini",
-        "type": "link",
-        "value": "https://animalsbreeds.com/wp-content/uploads/2015/07/Deutsche-Bracke.jpg"
+        "link": {
+          "type": "link",
+          "value": "https://animalsbreeds.com/wp-content/uploads/2015/07/Deutsche-Bracke.jpg"
+        }
       }]
     }]
   }, {
@@ -121,12 +127,15 @@ The treeview takes in the prop `tree`, which is in the following structure:
       "text": "Suphalak",
       "nodes": [{
         "text": "Moon",
-        "type": "link",
-        "value": "https://www.pets4homes.co.uk/images/articles/4198/what-is-a-suphalak-cat-5947aefcd4845.jpg"
+        "link": {
+          "type": "link",
+          "value": "https://www.pets4homes.co.uk/images/articles/4198/what-is-a-suphalak-cat-5947aefcd4845.jpg"
+        }
       }]
     }]
   }]
 }]
+
 ```
 
 ## Custom Icons
@@ -192,10 +201,10 @@ This can be used for checking user accounts:
 ## Upcoming Features
 
 - [ ] Increase further customization with `style` prop
-- [ ] Add draggable feature
-- [ ] Add edit button next to nodes
 
+- [x] Change icons
+- [x] Add draggable feature
+- [x] Add edit button next to nodes
 - [x] Add option to create new child node on double click
 - [x] Add `router-link` function to layer with `value` key
-- [x] Change icons
-
+- [x] Able to change the key and value of the `router-link` object

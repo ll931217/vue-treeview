@@ -8,11 +8,27 @@
               h1 Create New Node
               form(@keyup.enter="save")
                 input(type="text", v-model="newNode.text", placeholder="Text: Google")
-                input(type="text", v-model="newNode.type", placeholder="Type: link")
-                input(type="text", v-model="newNode.value", placeholder="Value: https://www.google.com")
+                input(type="text", v-model="newNode.link.type", placeholder="Type: link")
+                template(v-show="newNode.link.type === 'router-link'")
+                  input(type="text", v-model="newNode.link.key", placeholder="Key: path or name")
+                input(type="text", v-model="newNode.link.value", placeholder="Value: https://www.google.com")
                 .btn-group
                   button(type="button", @click="cancel").cancel Cancel
                   button(type="button", @click="save").save Save
+      transition(name="modal")
+        .modal-mask(v-show="editing", @click.self="cancel")
+          .modal-container
+            .modal-content
+              h1 Edit Node
+              form(@keyup.enter="save")
+                input(type="text", v-model="text", placeholder="Text: Google")
+                input(type="text", v-model="link.type", placeholder="Type: link")
+                template(v-show="link.type === 'router-link'")
+                  input(type="text", v-model="link.key", placeholder="Key: path or name")
+                input(type="text", v-model="link.value", placeholder="Value: https://www.google.com")
+                .btn-group
+                  button(type="button", @click="cancel").cancel Cancel
+                  button(type="button", @click="edit").save Edit
       .branch(@click="createNewNode", :class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
@@ -20,19 +36,35 @@
           template(v-else)
             fa(:icon="closed").plus-square
           span {{ text }}
-        template(v-else-if="value")
-          router-link(:to="{ name: value }", v-if="type === 'router-link'").value
+        template(v-else-if="link && link.value")
+          router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
-          a(:href="value", target="_blank" v-else).value
+          a(:href="link.value", target="_blank" v-else).value
             fa(:icon="defaultIcon")
             | {{ text }}
+          span(@click="editing = true", v-show="editable").edit Edit
         template(v-else)
           span {{ text }}
-      branch(v-for="(t, i) in nodes", :nodes.sync="t.nodes", :text="t.text", :type="t.type", :value="t.value", :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }", v-if="nodes", :closed="closed", :opened="opened", :defaultIcon="defaultIcon", :key="i").node
+      draggable(:list="nodes", :group="{ name: 'g1' }")
+        branch(
+          v-for="(t, i) in nodes",
+          :nodes.sync="t.nodes",
+          :text="t.text",
+          :type="t.type",
+          :link="t.link",
+          :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
+          v-if="nodes",
+          :closed="closed",
+          :opened="opened",
+          :defaultIcon="defaultIcon",
+          :editable="editable",
+          :key="i"
+        ).node
 </template>
 
 <script>
+  import draggable from 'vuedraggable'
   export default {
     name: 'Branch',
     props: {
@@ -49,9 +81,9 @@
         type: String,
         default: () => ''
       },
-      value: {
-        type: String,
-        default: () => ''
+      link: {
+        type: Object,
+        default: () => ({})
       },
       closed: {
         type: String | Object | Array
@@ -67,22 +99,24 @@
         default: () => true
       }
     },
-    data () {
-      return {
-        open: false,
-        clicks: 0,
-        timer: null,
-        newNode: {
-          text: "Google",
-          type: "link",
-          value: "https://www.google.com"
-        },
-        creating: false,
-        urlRegex: new RegExp(/^(https?:\/\/)?(www\.|[a-z\d]+\.)?[a-z]+(\.[a-z]{2,3}|:\d{2,5})(\.[a-z]{2,3})?(\/([\w\d]+)?)*((\?|&)[\w\d]+=[\w\d]+)*/)
-      }
-    },
+    data: () => ({
+      open: false,
+      clicks: 0,
+      timer: null,
+      newNode: {
+        text: 'Google',
+        link: {
+          type: 'link',
+          key: '',
+          value: 'https://www.google.com'
+        }
+      },
+      creating: false,
+      editing: false,
+      urlRegex: new RegExp(/^(https?:\/\/)?(www\.|[a-z\d]+\.)?[a-z]+(\.[a-z]{2,3}|:\d{2,5})(\.[a-z]{2,3})?(\/([\w\d]+)?)*((\?|&)[\w\d]+=[\w\d]+)*/)
+    }),
     methods: {
-      createNewNode() {
+      createNewNode () {
         if (this.editable) {
           this.clicks++
           if (this.clicks === 1) {
@@ -90,7 +124,7 @@
             this.timer = setTimeout(() => {
               app.toggle()
               app.clicks = 0
-            }, 280);
+            }, 250);
           } else {
             clearTimeout(this.timer)
             this.clicks = 0
@@ -104,23 +138,28 @@
         this.creating = false
         this.newNode = {
           text: 'Google',
-          type: 'link',
-          value: 'https://www.google.com'
+          link: {
+            type: 'link',
+            key: '',
+            value: 'https://www.google.com'
+          }
         }
-        this.$emit('creating', this.creating)
-        this.$emit('newNode', this.newNode)
       },
-      save() {
+      edit () {
+        this.editing = false
+        this.$emit('nodes', this.nodes)
+      },
+      save () {
+        if (this.newNode.link.type === 'link')
+          delete this.newNode.link.key
         this.nodes.push(this.newNode)
         this.creating = false
         this.newNode = {
-          text: "Google",
-          type: "link",
-          value: "https://www.google.com"
+          text: 'Google',
+          type: 'link',
+          value: 'https://www.google.com'
         }
-        this.$emit('creating', this.creating)
-        this.$emit('newNode', this.newNode)
-        this.$emit("nodes", this.nodes)
+        this.$emit('nodes', this.nodes)
       },
       toggle () {
         this.open = !this.open
@@ -128,6 +167,9 @@
       checkLast (i) {
         return (i + 1) === this.nodes.length
       }
+    },
+    components: {
+      draggable
     }
   }
 </script>
@@ -135,6 +177,8 @@
 <style lang="sass" scoped>
 svg
   margin-right: .5em
+
+#tree .treeview
 
 ul
   font-weight: bold
@@ -149,6 +193,7 @@ ul
   cursor: pointer
   display: inline-flex
   align-items: center
+  width: 100%
 
 .minus-square
   color: orange
@@ -251,4 +296,11 @@ ul
 .modal-enter .modal-container, .modal-leave-active .modal-container
   transform: scale(1.1)
 
+.edit
+  color: orange
+  margin-left: auto
+  margin-right: 1em
+
+  &:hover
+    text-decoration: underline
 </style>

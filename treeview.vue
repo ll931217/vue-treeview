@@ -1,6 +1,17 @@
 <template lang="pug">
   #tree
-    treeview(v-for="(t, i) in tree", :text="t.text", :nodes.sync="t.nodes", :type="t.type", :value="t.value", :closed="icons.closed", :opened="icons.opened", :defaultIcon="icons.default", :editable="editable", :key="i").treeview
+    treeview(
+      v-for="(t, i) in tree",
+      :text.sync="t.text",
+      :nodes.sync="t.nodes",
+      :type.sync="t.type",
+      :link.sync="t.link",
+      :closed="icons.closed",
+      :opened="icons.opened",
+      :defaultIcon="icons.default",
+      :editable="editable",
+      :key="i"
+    ).treeview
     p Double click to create new node
 </template>
 
@@ -34,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 $border: 2px dashed #607d8b
 
 #tree
@@ -48,12 +59,12 @@ $border: 2px dashed #607d8b
     font-family: "Roboto Mono"
     font-weight: Bold
 
-    &> li > ul.first
+    & /deep/ > li > ul.first
       li
         &:before
           display: block
 
-    ul
+    /deep/ ul
       &.last
         li:after
           display: none
