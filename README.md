@@ -198,6 +198,12 @@ This can be used for checking user accounts:
 <treeview :tree.sync="tree" :editable="userAccount === 'ADMIN'" />
 ```
 
+## Draggable
+
+```html
+<treeview :tree.sync="tree" :editable="true" :draggable="true" />
+```
+
 ## Upcoming Features
 
 - [ ] Increase further customization with `style` prop

@@ -10,6 +10,7 @@
       :opened="icons.opened",
       :defaultIcon="icons.default",
       :editable="editable",
+      :draggable="draggable",
       :key="i"
     ).treeview
     p Double click to create new node
@@ -35,6 +36,10 @@ export default {
       })
     },
     editable: {
+      type: Boolean,
+      default: () => true
+    },
+    draggable: {
       type: Boolean,
       default: () => true
     }

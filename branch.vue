@@ -46,7 +46,22 @@
           span(@click="editing = true", v-show="editable").edit Edit
         template(v-else)
           span {{ text }}
-      draggable(:list="nodes", :group="{ name: 'g1' }")
+      draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable")
+        branch(
+          v-for="(t, i) in nodes",
+          :nodes.sync="t.nodes",
+          :text="t.text",
+          :type="t.type",
+          :link="t.link",
+          :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
+          v-if="nodes",
+          :closed="closed",
+          :opened="opened",
+          :defaultIcon="defaultIcon",
+          :editable="editable",
+          :key="i"
+        ).node
+      template(v-else)
         branch(
           v-for="(t, i) in nodes",
           :nodes.sync="t.nodes",
@@ -95,6 +110,10 @@
         type: String | Object | Array
       },
       editable: {
+        type: Boolean,
+        default: () => true
+      },
+      draggable: {
         type: Boolean,
         default: () => true
       }
