@@ -150,11 +150,12 @@
             this.creating = true
           }
         } else {
-          this.toggle
+          this.toggle()
         }
       },
       cancel () {
         this.creating = false
+        this.editing = false
         this.newNode = {
           text: 'Google',
           link: {
