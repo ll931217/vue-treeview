@@ -10,6 +10,7 @@
       :opened="icons.opened",
       :defaultIcon="icons.default",
       :editable="editable",
+      :expanded="expanded",
       :draggable="draggable",
       :key="i"
     ).treeview
@@ -38,6 +39,10 @@ export default {
     editable: {
       type: Boolean,
       default: () => true
+    },
+    expanded: {
+      type: Boolean,
+      default: () => false
     },
     draggable: {
       type: Boolean,

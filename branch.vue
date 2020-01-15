@@ -53,12 +53,13 @@
           :text="t.text",
           :type="t.type",
           :link="t.link",
-          :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
+          :class="{ open: open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
           v-if="nodes",
           :closed="closed",
           :opened="opened",
           :defaultIcon="defaultIcon",
           :editable="editable",
+          :expanded.sync="expanded",
           :key="i"
         ).node
       template(v-else)
@@ -68,12 +69,13 @@
           :text="t.text",
           :type="t.type",
           :link="t.link",
-          :class="{ open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
+          :class="{ open: open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
           v-if="nodes",
           :closed="closed",
           :opened="opened",
           :defaultIcon="defaultIcon",
           :editable="editable",
+          :expanded="expanded",
           :key="i"
         ).node
 </template>
@@ -113,6 +115,10 @@
         type: Boolean,
         default: () => true
       },
+      expanded: {
+        type: Boolean,
+        default: () => false
+      },
       draggable: {
         type: Boolean,
         default: () => true
@@ -134,6 +140,14 @@
       editing: false,
       urlRegex: new RegExp(/^(https?:\/\/)?(www\.|[a-z\d]+\.)?[a-z]+(\.[a-z]{2,3}|:\d{2,5})(\.[a-z]{2,3})?(\/([\w\d]+)?)*((\?|&)[\w\d]+=[\w\d]+)*/)
     }),
+    watch: {
+      expanded: {
+        handler: function (val) {
+          this.open = val
+        },
+        immediate: true
+      }
+    },
     methods: {
       createNewNode () {
         if (this.editable) {
