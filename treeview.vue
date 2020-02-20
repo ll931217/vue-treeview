@@ -103,7 +103,7 @@ $border: 2px dashed #607d8b
         left: 0
         height: 100%
         width: 100%
-        transition: opacity .3s ease;
+        transition: opacity .3s ease
 
         .modal-container
           background-color: white
