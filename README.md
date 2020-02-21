@@ -204,9 +204,7 @@ This can be used for checking user accounts:
 <treeview :tree.sync="tree" :editable="true" :draggable="true" />
 ```
 
-## Upcoming Features
-
-- [ ] Increase further customization with `style` prop
+## Features
 
 - [x] Change icons
 - [x] Add draggable feature

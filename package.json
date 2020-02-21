@@ -1,6 +1,6 @@
 {
   "name": "@ll931217/vue-treeview",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
   "repository": {
