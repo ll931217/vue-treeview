@@ -14,7 +14,9 @@
       :draggable="draggable",
       :key="i"
     ).ll931217-vue-treeview
-    p Double click to create new node
+
+    if editable
+        p Double click to create new node
 </template>
 
 <script>
