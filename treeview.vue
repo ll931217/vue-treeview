@@ -8,13 +8,12 @@
       :link.sync="t.link",
       :closed="icons.closed",
       :opened="icons.opened",
-      :defaultIcon="icons.default",
+      :defaultIcon="t.icon || icons.default",
       :editable="editable",
       :expanded="expanded",
       :draggable="draggable",
       :key="i"
     ).ll931217-vue-treeview
-
     if editable
         p Double click to create new node
 </template>
