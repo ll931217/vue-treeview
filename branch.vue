@@ -29,7 +29,7 @@
                 .btn-group
                   button(type="button", @click="cancel").cancel Cancel
                   button(type="button", @click="edit").save Edit
-      .branch(:class="{ link: (nodes.length > 0) }")
+      .branch(@click="createNewBranchNode", :class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
             fa(:icon="opened" @click="createNewNode").minus-square
@@ -159,6 +159,11 @@
       }
     },
     methods: {
+      createNewBranchNode() {
+          if (!this.link.type) {
+            this.createNewNode();
+          }
+      },
       createNewNode () {
         if (this.editable) {
           this.clicks++

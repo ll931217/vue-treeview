@@ -170,7 +170,7 @@ $border: 2px dashed #607d8b
       .branch
         // background-color: #36404a
         color: white
-        cursor: pointer
+        cursor: default
         display: inline-flex
         align-items: center
         width: 100%
