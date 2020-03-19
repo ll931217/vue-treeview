@@ -218,7 +218,7 @@ $border: 2px dashed #607d8b
       &:before
         content: ""
         position: absolute
-        top: -6px
+        top: -5px
         left: -15px
         border-left: $border
         border-bottom: $border
