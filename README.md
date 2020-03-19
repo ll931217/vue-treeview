@@ -1,4 +1,3 @@
-
 # TreeView for Vue.js
 
 [![GitHub stars](https://img.shields.io/github/stars/ll931217/vue-treeview.svg?style=for-the-badge)](https://github.com/ll931217/vue-treeview/stargazers)
@@ -140,6 +139,7 @@ The treeview takes in the prop `tree`, which is in the following structure:
 
 ## Custom Icons
 
+### Default Icons
 If you want to use custom icons, you can select them from [FontAwesome 5](https://fontawesome.com/icons?d=gallery), add them like this:
 
 First download their packages (Solid icons are already available):
@@ -180,6 +180,24 @@ export default {
 </script>
 ```
 
+### Icon for a node
+
+In your node, add an `icon` object, you can customise the icon for that specific node such as:
+```json
+{
+  "text": "Barbet",
+  "icon": "surprise"
+}
+```
+
+## Draggable
+
+```html
+<treeview :tree.sync="tree" :editable="true" :draggable="true" />
+```
+
+## Tips
+
 Adding `.sync` to `:tree` would allow two-way binding for the tree data:
 
 ```html
@@ -196,12 +214,6 @@ This can be used for checking user accounts:
 
 ```html
 <treeview :tree.sync="tree" :editable="userAccount === 'ADMIN'" />
-```
-
-## Draggable
-
-```html
-<treeview :tree.sync="tree" :editable="true" :draggable="true" />
 ```
 
 ## Features

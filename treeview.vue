@@ -47,7 +47,7 @@ export default {
     },
     draggable: {
       type: Boolean,
-      default: () => true
+      default: () => false
     }
   },
   components: {
@@ -69,17 +69,13 @@ $border: 2px dashed #607d8b
   svg
     margin-right: .5em
 
-  // ul.ll931217-vue-treeview
   ul
     font-family: "Roboto Mono"
     font-weight: Bold
 
-    // & /deep/ > li > ul.first
     &.ll931217-vue-treeview > li:before, &.ll931217-vue-treeview > li:after
       display: none
 
-    // /deep/ ul
-    // ul
     font-weight: bold
     list-style: none
     margin: 0
@@ -168,12 +164,14 @@ $border: 2px dashed #607d8b
                   color: white
 
       .branch
-        // background-color: #36404a
         color: white
         cursor: default
         display: inline-flex
         align-items: center
         width: 100%
+
+        .minus-square, .plus-square
+          cursor: pointer
 
         .minus-square
           color: orange
@@ -186,6 +184,7 @@ $border: 2px dashed #607d8b
 
         .edit
           color: orange
+          cursor: pointer
           margin-left: auto
           margin-right: 1em
 

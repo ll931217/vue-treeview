@@ -29,22 +29,14 @@
                 .btn-group
                   button(type="button", @click="cancel").cancel Cancel
                   button(type="button", @click="edit").save Edit
-      .branch(@click="createNewBranchNode", :class="{ link: (nodes.length > 0) }")
+      .branch(:class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
             fa(:icon="opened" @click="createNewNode").minus-square
           template(v-else)
             fa(:icon="closed" @click="createNewNode").plus-square
           
-          template(v-if="link && link.value")
-            router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
-              fa(:icon="defaultIcon")
-              | {{ text }}
-            a(:href="link.value", target="_blank" v-else).value
-              fa(:icon="defaultIcon")
-              | {{ text }}
-          template(v-else)
-            span {{ text }}
+          span {{ text }}
         template(v-else-if="link && link.value")
           router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
@@ -159,11 +151,6 @@
       }
     },
     methods: {
-      createNewBranchNode() {
-          if (!this.link.type) {
-            this.createNewNode();
-          }
-      },
       createNewNode () {
         if (this.editable) {
           this.clicks++
