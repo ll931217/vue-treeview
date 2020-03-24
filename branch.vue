@@ -32,11 +32,12 @@
       .branch(:class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
-            fa(:icon="opened" @click="createNewNode").minus-square
+            fa(:icon="opened", @click="createNewNode").minus-square
           template(v-else)
-            fa(:icon="closed" @click="createNewNode").plus-square
+            fa(:icon="closed", @click="createNewNode").plus-square
+          span {{ text }}
         
-        template(v-if="link && link.value")
+        template(v-else-if="link && link.value")
           router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
@@ -45,8 +46,7 @@
             | {{ text }}
           span(@click="editing = true", v-show="editable").edit Edit
         template(v-else)
-          fa(:icon="defaultIcon")
-          | {{ text }}
+          span(@click="createNewNode") {{ text }}
       draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable")
         branch(
           v-for="(t, i) in nodes",
