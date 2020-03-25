@@ -12,6 +12,7 @@
       :editable="editable",
       :expanded="expanded",
       :draggable="draggable",
+      :show-parent-icon="showParentIcon"
       :key="i"
     ).ll931217-vue-treeview
     if editable
@@ -48,6 +49,13 @@ export default {
     draggable: {
       type: Boolean,
       default: () => false
+    },
+    showParentIcon: {
+      type: Object,
+      default: () => ({
+        parentShow: false,
+        emptyParentShow: false,
+      })
     }
   },
   components: {

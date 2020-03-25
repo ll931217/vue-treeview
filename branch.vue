@@ -35,18 +35,26 @@
             fa(:icon="opened", @click="createNewNode").minus-square
           template(v-else)
             fa(:icon="closed", @click="createNewNode").plus-square
-          span {{ text }}
         
-        template(v-else-if="link && link.value")
+        template(v-if="link && link.value")
           router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
+
           a(:href="link.value", target="_blank" v-else).value
             fa(:icon="defaultIcon")
             | {{ text }}
+
           span(@click="editing = true", v-show="editable").edit Edit
         template(v-else)
-          span(@click="createNewNode") {{ text }}
+          span(v-if="nodes.length > 0")
+            fa(:icon="defaultIcon", v-show="showParentIcon.parentShow")
+            | {{ text }}
+
+          span(@click="createNewNode", v-else)
+            fa(:icon="defaultIcon", v-show="showParentIcon.emptyParentShow")
+            | {{ text }}
+
       draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable")
         branch(
           v-for="(t, i) in nodes",
@@ -61,6 +69,7 @@
           :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
           :expanded.sync="expanded",
+          :show-parent-icon="showParentIcon"
           :key="i"
         ).node
       template(v-else)
@@ -76,7 +85,8 @@
           :opened="opened",
           :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
-          :expanded="expanded",
+          :expanded.sync="expanded",
+          :show-parent-icon="showParentIcon"
           :key="i"
         ).node
 </template>
@@ -123,6 +133,13 @@
       draggable: {
         type: Boolean,
         default: () => true
+      },
+      showParentIcon: {
+        type: Object,
+        default: () => ({
+          parentShow: false,
+          emptyParentShow: false,
+        })
       }
     },
     data: () => ({
