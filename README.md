@@ -34,106 +34,111 @@ Then add this to where you want to use the treeview:
 <tree-view :tree="tree">
 ```
 
+## Tree
 The treeview takes in the prop `tree`, which is in the following structure:
 
 ```json
-[{
-  "text": "Dogs",
-  "nodes": [{
-    "text": "Germany",
+[
+  {
+    "text": "Dogs",
     "nodes": [{
-      "text": "American Eskimo Dog",
+      "text": "Germany",
       "nodes": [{
-        "text": "Fluffy",
-        "link": {
-          "type": "link", // Type `link` will create an `Anchor` tag
-          "value": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/American_Eskimo_Dog_1.jpg/1920px-American_Eskimo_Dog_1.jpg" // URL of the link
-        }
+        "text": "American Eskimo Dog",
+        "nodes": [{
+          "text": "Fluffy",
+          "link": {
+            "type": "link", // Type `link` will create an `Anchor` tag
+            "value": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/American_Eskimo_Dog_1.jpg/1920px-American_Eskimo_Dog_1.jpg" // URL of the link
+          }
+        }]
+      }, {
+        "text": "Bavarian Mountain Hound"
+      }, {
+        "text": "Boxer",
+        "nodes": [{
+          "text": "Rip (Router-link)",
+          "link": {
+            "type": "router-link", // Type `router-link` will create a router-link, duh.
+            "key": "path", // key to use when giving it the value, router-link(:to="{ path: '/d-ger-boxer-rip' }")
+            "value": "/d-ger-boxer-rip"
+          }
+        }, {
+          "text": "Mackenzie (Router-link)",
+          "link": {
+            "type": "router-link",
+            "key": "name",
+            "value": "d-ger-boxer-machenzie"
+          }
+        }]
+      }, {
+        "text": "Bullenbeisser"
+      }, {
+        "text": "Deutsche Bracke",
+        "nodes": [{
+          "text": "Mini",
+          "link": {
+            "type": "link",
+            "value": "https://animalsbreeds.com/wp-content/uploads/2015/07/Deutsche-Bracke.jpg"
+          }
+        }]
       }]
     }, {
-      "text": "Bavarian Mountain Hound"
-    }, {
-      "text": "Boxer",
+      "text": "France",
       "nodes": [{
-        "text": "Rip (Router-link)",
-        "link": {
-          "type": "router-link", // Type `router-link` will create a router-link, duh.
-          "key": "path", // key to use when giving it the value, router-link(:to="{ path: '/d-ger-boxer-rip' }")
-          "value": "/d-ger-boxer-rip"
-        }
+        "text": "Ariegeois"
       }, {
-        "text": "Mackenzie (Router-link)",
+        "text": "Artois Hound"
+      }]
+    }]
+  }, {
+    "text": "Cats",
+    "nodes": [
+      {
+        "text": "Russia",
+        "nodes": [{
+          "text": "Donskoy"
+        }, {
+          "text": "Kurilian Bobtail"
+        }]
+      }, {
+        "text": "Thailand",
+        "nodes": [{
+          "text": "Khao Manee"
+        }, {
+          "text": "Suphalak",
+          "nodes": [{
+            "text": "Moon",
+            "link": {
+              "type": "link",
+              "value": "https://www.pets4homes.co.uk/images/articles/4198/what-is-a-suphalak-cat-5947aefcd4845.jpg"
+            }
+          }]
+        }]
+      }
+    ]
+  },
+  { // > v0.3.0
+    "text": "Standing Up",
+    "link": {
+      "type": "router-link",
+      "key": "path",
+      "value": "templink"
+    },
+    "icon": "cube",
+    "nodes": [
+      {
+        "text": "mixamo.com",
         "link": {
           "type": "router-link",
-          "key": "name",
-          "value": "d-ger-boxer-machenzie"
-        }
-      }]
-    }, {
-      "text": "Bullenbeisser"
-    }, {
-      "text": "Dachshund"
-    }, {
-      "text": "Deutsche Bracke",
-      "nodes": [{
-        "text": "Mini",
-        "link": {
-          "type": "link",
-          "value": "https://animalsbreeds.com/wp-content/uploads/2015/07/Deutsche-Bracke.jpg"
-        }
-      }]
-    }]
-  }, {
-    "text": "France",
-    "nodes": [{
-      "text": "Ariegeois"
-    }, {
-      "text": "Artois Hound"
-    }, {
-      "text": "Barbet"
-    }, {
-      "text": "Beagle-Harrier"
-    }, {
-      "text": "Beauceron"
-    }, {
-      "text": "Berger Picard"
-    }, {
-      "text": "Bloodhound"
-    }]
-  }]
-}, {
-  "text": "Cats",
-  "nodes": [{
-    "text": "Russia",
-    "nodes": [{
-      "text": "Donskoy"
-    }, {
-      "text": "Kurilian Bobtail"
-    }, {
-      "text": "Mekong Bobtail"
-    }, {
-      "text": "Siberian"
-    }]
-  }, {
-    "text": "Thailand",
-    "nodes": [{
-      "text": "Khao Manee"
-    }, {
-      "text": "Korat"
-    }, {
-      "text": "Korn Ja"
-    }, {
-      "text": "Suphalak",
-      "nodes": [{
-        "text": "Moon",
-        "link": {
-          "type": "link",
-          "value": "https://www.pets4homes.co.uk/images/articles/4198/what-is-a-suphalak-cat-5947aefcd4845.jpg"
-        }
-      }]
-    }]
-  }]
-}]
+          "key": "path",
+          "value": "templink"
+        },
+        "icon": "running"
+      }
+    ]
+  }
+]
 
 ```
 
@@ -169,10 +174,7 @@ export default {
       icons: {
         closed: 'angle-up',
         opened: 'angle-down',
-        default: {
-          prefix: 'fab',
-          iconName: 'accessible-icon'
-        }
+        default: faChessQueen
       }
     }
   }
@@ -190,6 +192,29 @@ In your node, add an `icon` object, you can customise the icon for that specific
 }
 ```
 
+### Toggle whether to show parent node icons
+
+Usage:
+```html
+<treeview :tree.sync="tree" :editable="true" :show-parent-icon="{ parentShow: true, emptyParentShow: false }" />
+```
+The above example will show all icons of parent nodes that has children nodes and hide all empty parent nodes.
+
+**NOTE**: the prop `show-parent-icon` can be written as above or `showParentIcon`, its all up to you.
+
+Default:
+```javascript
+showParentIcon: {
+  type: Object,
+  default: () => ({
+    parentShow: false,
+    emptyParentShow: false
+  })
+}
+```
+
+**NOTE**: Parent nodes with `link` property will still show their icon. See the [`JSON` tree](#tree) above, the last object tree, the parent node has `link` property.
+
 ## Draggable
 
 ```html
@@ -198,7 +223,7 @@ In your node, add an `icon` object, you can customise the icon for that specific
 
 ## Tips
 
-Adding `.sync` to `:tree` would allow two-way binding for the tree data:
+Adding `.sync` to `:tree` would allow two-way binding for the tree data, if data changed in the child component it will be updated for the entire tree, this feature is good for if you want to save the tree if it changed:
 
 ```html
 <treeview :tree.sync="tree" />
@@ -210,17 +235,8 @@ Double-click the parent node will allow you to add new node to the tree, only if
 <treeview :tree.sync="tree" :editable="true" />
 ```
 
-This can be used for checking user accounts:
+This `prop` can be used for checking user accounts:
 
 ```html
 <treeview :tree.sync="tree" :editable="userAccount === 'ADMIN'" />
 ```
-
-## Features
-
-- [x] Change icons
-- [x] Add draggable feature
-- [x] Add edit button next to nodes
-- [x] Add option to create new child node on double click
-- [x] Add `router-link` function to layer with `value` key
-- [x] Able to change the key and value of the `router-link` object
