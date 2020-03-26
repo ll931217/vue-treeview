@@ -29,23 +29,32 @@
                 .btn-group
                   button(type="button", @click="cancel").cancel Cancel
                   button(type="button", @click="edit").save Edit
-      .branch(@click="createNewNode", :class="{ link: (nodes.length > 0) }")
+      .branch(:class="{ link: (nodes.length > 0) }")
         template(v-if="nodes.length > 0")
           template(v-if="open")
-            fa(:icon="opened").minus-square
+            fa(:icon="opened", @click="createNewNode").minus-square
           template(v-else)
-            fa(:icon="closed").plus-square
-          span {{ text }}
-        template(v-else-if="link && link.value")
+            fa(:icon="closed", @click="createNewNode").plus-square
+        
+        template(v-if="link && link.value")
           router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
+
           a(:href="link.value", target="_blank" v-else).value
             fa(:icon="defaultIcon")
             | {{ text }}
+
           span(@click="editing = true", v-show="editable").edit Edit
         template(v-else)
-          span {{ text }}
+          span(v-if="nodes.length > 0")
+            fa(:icon="defaultIcon", v-show="showParentIcon.parentShow")
+            | {{ text }}
+
+          span(@click="createNewNode", v-else)
+            fa(:icon="defaultIcon", v-show="showParentIcon.emptyParentShow")
+            | {{ text }}
+
       draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable")
         branch(
           v-for="(t, i) in nodes",
@@ -57,9 +66,10 @@
           v-if="nodes",
           :closed="closed",
           :opened="opened",
-          :defaultIcon="defaultIcon",
+          :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
           :expanded.sync="expanded",
+          :show-parent-icon="showParentIcon"
           :key="i"
         ).node
       template(v-else)
@@ -73,9 +83,10 @@
           v-if="nodes",
           :closed="closed",
           :opened="opened",
-          :defaultIcon="defaultIcon",
+          :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
-          :expanded="expanded",
+          :expanded.sync="expanded",
+          :show-parent-icon="showParentIcon"
           :key="i"
         ).node
 </template>
@@ -122,6 +133,13 @@
       draggable: {
         type: Boolean,
         default: () => true
+      },
+      showParentIcon: {
+        type: Object,
+        default: () => ({
+          parentShow: false,
+          emptyParentShow: false,
+        })
       }
     },
     data: () => ({
@@ -207,4 +225,3 @@
     }
   }
 </script>
-
