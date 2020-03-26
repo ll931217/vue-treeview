@@ -1,4 +1,4 @@
-# v0.3.0 #15
+# v0.3.0 [#15](https://github.com/ll931217/vue-treeview/pull/15)
 
 - Added `CHANGELOG.md`
 - Parent nodes can become links
