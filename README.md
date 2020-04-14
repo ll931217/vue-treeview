@@ -118,7 +118,7 @@ The treeview takes in the prop `tree`, which is in the following structure:
       }
     ]
   },
-  { // > v0.3.0
+  { // >= v0.3.0
     "text": "Standing Up",
     "link": {
       "type": "router-link",
