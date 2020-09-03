@@ -9,7 +9,17 @@
 
 ![Vue-TreeView](assets/preview.png)
 
-## Usage
+If you would like to support me, [Please buy me a pizza :pizza:](https://www.buymeacoffee.com/ll931217)
+
+## :sparkles: Incoming Features
+
+- Bump to vue v3 when ready.
+- Add customizable colours for each node, maybe even styles.
+- Use `slot` to customize look of node, like icons with images etc. (Will have to look into `slot` a bit more)
+
+*Any future suggestions are welcome*
+
+## :mortar_board: Usage
 
 Install the package into your project:
 
@@ -34,7 +44,7 @@ Then add this to where you want to use the treeview:
 <tree-view :tree="tree">
 ```
 
-## Tree
+## :evergreen_tree: Tree
 The treeview takes in the prop `tree`, which is in the following structure:
 
 ```json
@@ -221,7 +231,7 @@ showParentIcon: {
 <treeview :tree.sync="tree" :editable="true" :draggable="true" />
 ```
 
-## Tips
+## :100: Tips
 
 Adding `.sync` to `:tree` would allow two-way binding for the tree data, if data changed in the child component it will be updated for the entire tree, this feature is good for if you want to save the tree if it changed:
 
