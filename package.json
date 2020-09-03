@@ -1,6 +1,6 @@
 {
   "name": "@ll931217/vue-treeview",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
   "publishConfig": { "registry": "https://npm.pkg.github.com/" },
