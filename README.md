@@ -9,7 +9,7 @@
 
 ![Vue-TreeView](assets/preview.png)
 
-If you would like to support me, [Please buy me a pizza :pizza:](https://www.buymeacoffee.com/ll931217)
+If you would like to support me, <a href="https://www.buymeacoffee.com/ll931217" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 ## :sparkles: Incoming Features
 
