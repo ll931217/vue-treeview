@@ -41,7 +41,7 @@
             fa(:icon="defaultIcon")
             | {{ text }}
 
-          a(:href="link.value", target="_blank" v-else).value
+          a(:href="link.value", target="_blank", v-else-if="link.type === 'link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
 
