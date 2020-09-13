@@ -190,6 +190,9 @@ $border: 2px dashed #607d8b
         .value
           color: lightblue
 
+          &:hover
+            color: orange
+
         .edit
           color: orange
           cursor: pointer

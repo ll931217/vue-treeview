@@ -37,7 +37,7 @@
             fa(:icon="closed", @click="createNewNode").plus-square
         
         template(v-if="link && link.value")
-          router-link(:to="{ [link.key]: link.value }", v-if="link.type === 'router-link'").value
+          router-link(:to="{ [link.key]: link.value, query: link.query || {}, params: link.params || {} }", v-if="link.type === 'router-link'").value
             fa(:icon="defaultIcon")
             | {{ text }}
 
@@ -69,6 +69,7 @@
           :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
           :expanded.sync="expanded",
+          :draggable.sync="draggable",
           :show-parent-icon="showParentIcon"
           :key="i"
         ).node
@@ -86,6 +87,7 @@
           :defaultIcon="t.icon || defaultIcon",
           :editable="editable",
           :expanded.sync="expanded",
+          :draggable.sync="draggable",
           :show-parent-icon="showParentIcon"
           :key="i"
         ).node
