@@ -3,9 +3,6 @@
   "version": "0.3.1",
   "description": "A TreeView component for Vue.js.",
   "main": "index.js",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ll931217/vue-treeview"
@@ -30,6 +27,6 @@
     "pug-plain-loader": "^1.0.0",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
-    "vuedraggable": "^2.24.1"
+    "vuedraggable": "^2.20.0"
   }
 }
