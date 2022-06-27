@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 [![Version](https://img.shields.io/npm/v/@ll931217/vue-treeview.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 
-![Vue-TreeView](assets/preview.png)
+![Vue-TreeView](src/assets/preview.png)
 
 <a href="https://www.buymeacoffee.com/ll931217" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 117px !important;" ></a>
 
