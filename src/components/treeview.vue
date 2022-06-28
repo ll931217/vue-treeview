@@ -1,67 +1,63 @@
 <template lang="pug">
-  #ll931217-vue-treeview
-    treeview(
-      v-for="(t, i) in tree",
-      :text.sync="t.text",
-      :nodes.sync="t.nodes",
-      :type.sync="t.type",
-      :link.sync="t.link",
-      :closed="icons.closed",
-      :opened="icons.opened",
-      :defaultIcon="t.icon || icons.default",
-      :editable="editable",
-      :expanded="expanded",
-      :draggable="draggable",
-      :show-parent-icon="showParentIcon"
-      :key="i"
-    ).ll931217-vue-treeview
-    if editable
-        p Double click to create new node
+#ll931217-vue-treeview
+  p Editable: {{ editable }}
+  p Expanded: {{ expanded }}
+  treeview(
+    v-for="(t, i) in tree",
+    :text.sync="t.text",
+    :nodes.sync="t.nodes",
+    :type.sync="t.type",
+    :link.sync="t.link",
+    :closed="icons.closed",
+    :opened="icons.opened",
+    :defaultIcon="t.icon || icons.default",
+    :editable="editable",
+    :expanded="expanded",
+    :draggable="draggable",
+    :show-parent-icon="showParentIcon"
+    :key="i"
+  ).ll931217-vue-treeview
+  p(v-if="editable") Double click to create new node
 </template>
 
-<script>
-import branch from './branch'
+<script setup>
+import { defineProps } from 'vue'
+import treeview from './branch.vue'
 
-export default {
-  name: 'TreeView',
-  props: {
-    tree: {
-      type: Array,
-      required: true,
-      default: () => []
-    },
-    icons: {
-      type: Object,
-      default: () => ({
-        closed: "plus-square",
-        opened: "minus-square",
-        default: "truck-loading"
-      })
-    },
-    editable: {
-      type: Boolean,
-      default: () => true
-    },
-    expanded: {
-      type: Boolean,
-      default: () => false
-    },
-    draggable: {
-      type: Boolean,
-      default: () => false
-    },
-    showParentIcon: {
-      type: Object,
-      default: () => ({
-        parentShow: false,
-        emptyParentShow: false,
-      })
-    }
+defineProps({
+  tree: {
+    type: Array,
+    required: true,
+    default: () => []
   },
-  components: {
-    treeview: branch
+  icons: {
+    type: Object,
+    default: () => ({
+      closed: "plus-square",
+      opened: "minus-square",
+      default: "truck-loading"
+    })
+  },
+  editable: {
+    type: Boolean,
+    default: () => false
+  },
+  expanded: {
+    type: Boolean,
+    default: () => false
+  },
+  draggable: {
+    type: Boolean,
+    default: false
+  },
+  showParentIcon: {
+    type: Object,
+    default: () => ({
+      parentShow: false,
+      emptyParentShow: false,
+    })
   }
-}
+})
 </script>
 
 <style lang="sass">
@@ -249,5 +245,5 @@ $border: 2px dashed #607d8b
 @font-face
   font-family: "Roboto Mono"
   font-weight: bold
-  src: url("./assets/fonts/RobotoMono-Bold.ttf")
+  src: url("../assets/fonts/RobotoMono-Bold.ttf")
 </style>
