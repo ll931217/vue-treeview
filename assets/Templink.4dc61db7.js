@@ -1,0 +1,1 @@
+import{c as e,o as n,_ as o}from"./index.37a6d302.js";function r(a,s,c,p,l,i){return n(),e("h3",null,"Nothing here to see. I swear")}const t={name:"Templink"};var _=o(t,[["render",r]]);export{_ as default};
