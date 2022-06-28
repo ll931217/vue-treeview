@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Tree from './tree.json'
+
 const tree = ref(Tree)
 const expanded = ref(false)
 
@@ -17,15 +18,22 @@ const expand = () => {
 .header
   h1 Tree View
   p A simple treeview component for Vuejs Apps
+
 .body
   div
     .expand-menu
       a(@click="expand") Expand All
       a(@click="collapse") Collapse All
-    tree-view(:tree.sync="tree", :editable="true", :expanded="expanded", :show-parent-icon="{ parentShow: true, emptyParentShow: false }")
+    tree-view(
+      :tree.sync="tree",
+      :editable="true",
+      :expanded="expanded",
+      :show-parent-icon="{ parentShow: true, emptyParentShow: false }"
+    )
   router-view
+
 .footer
-  h5 MIT Licensed | 2019 -> Present | Liang-Shih Lin
+  h5 MIT Licensed | Liang-Shih Lin
     a(href="https://github.com/ll931217/vue-treeview", target="_blank").source Source
 </template>
 
@@ -37,8 +45,7 @@ body
   align-items: center
   height: 100vh
   width: 100vw
-  overflow: hidden
-  overflow-y: scroll
+  overflow: scroll
   font-family: 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale

@@ -1,5 +1,7 @@
 <template lang="pug">
 #ll931217-vue-treeview
+  p Editable: {{ editable }}
+  p Expanded: {{ expanded }}
   treeview(
     v-for="(t, i) in tree",
     :text.sync="t.text",
@@ -15,8 +17,7 @@
     :show-parent-icon="showParentIcon"
     :key="i"
   ).ll931217-vue-treeview
-  if editable
-      p Double click to create new node
+  p(v-if="editable") Double click to create new node
 </template>
 
 <script setup>
@@ -39,14 +40,14 @@ defineProps({
   },
   editable: {
     type: Boolean,
-    default: () => true
+    default: () => false
   },
   expanded: {
     type: Boolean,
     default: () => false
   },
   draggable: {
-    type: [Boolean, Object],
+    type: Boolean,
     default: false
   },
   showParentIcon: {

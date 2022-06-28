@@ -7,13 +7,14 @@
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 [![Version](https://img.shields.io/npm/v/@ll931217/vue-treeview.svg?style=for-the-badge)](https://nodei.co/npm/@ll931217/vue-treeview/)
 
+> Upgraded to Vue 3
+
 ![Vue-TreeView](src/assets/preview.png)
 
 <a href="https://www.buymeacoffee.com/ll931217" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 26px !important;width: 117px !important;" ></a>
 
 ## :sparkles: Incoming Features
 
-- Bump to vue v3 when ready.
 - Add customizable colours for each node, maybe even styles.
 - Use `slot` to customize look of node, like icons with images etc. (Will have to look into `slot` a bit more)
 

@@ -55,26 +55,8 @@ ul
           fa(:icon="defaultIcon", v-show="showParentIcon.emptyParentShow")
           | {{ text }}
 
-    p {{ nodes.length }}
-    draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable", item-key="text")
+    vue-draggable(:list="nodes", :group="{ name: 'g1' }", v-if="draggable", item-key="text")
       template(#item="{node, i}")
-        //- branch(
-        //-   v-for="(t, i) in nodes",
-        //-   :nodes.sync="t.nodes",
-        //-   :text="t.text",
-        //-   :type="t.type",
-        //-   :link="t.link",
-        //-   :class="{ open: open, first: i === 0 && !checkLast(i), last: checkLast(i) }",
-        //-   v-if="nodes",
-        //-   :closed="closed",
-        //-   :opened="opened",
-        //-   :defaultIcon="t.icon || defaultIcon",
-        //-   :editable="editable",
-        //-   :expanded.sync="expanded",
-        //-   :draggable.sync="draggable",
-        //-   :show-parent-icon="showParentIcon"
-        //-   :key="i"
-        //- ).node
         branch(
           v-if="nodes",
           :nodes.sync="node.nodes",
@@ -113,7 +95,7 @@ ul
 
 <script setup>
 import { defineEmits, defineProps, ref, watch } from 'vue'
-import draggable from 'vuedraggable'
+import VueDraggable from 'vuedraggable'
 
 const props = defineProps({
   text: {
@@ -163,9 +145,7 @@ const props = defineProps({
   }
 })
 
-const expanded = ref(props.expanded)
-
-const emit = defineEmits(['nodes'])
+const emit = defineEmits(['nodes', 'update:expanded'])
 
 const open = ref(false)
 const clicks = ref(0)
@@ -182,8 +162,9 @@ const creating = ref(false)
 const editing = ref(false)
 const urlRegex = new RegExp(/^(https?:\/\/)?(www\.|[a-z\d]+\.)?[a-z]+(\.[a-z]{2,3}|:\d{2,5})(\.[a-z]{2,3})?(\/([\w\d]+)?)*((\?|&)[\w\d]+=[\w\d]+)*/)
 
-watch(expanded, async (val) => {
+watch(() => props.expanded, async (val) => {
   open.value = val
+  emit('update:expanded', val)
 }, { immediate: true })
 
 const createNewNode = () => {

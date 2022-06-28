@@ -1,8 +1,16 @@
 {
   "name": "@ll931217/vue-treeview",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A TreeView component for Vue.js.",
-  "main": "./src/vue-treeview.js",
+  "files": ["dist"],
+  "main": "./dist/vue-treeview.umd.js",
+  "module": "./dist/vue-treeview.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-treeview.es.js",
+      "require": "./dist/vue-treeview.umd.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ll931217/vue-treeview"
@@ -20,7 +28,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "build-lib": "vite build -c ./vite.config.lib.js",
+    "preview": "vite preview --host"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -28,14 +37,14 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.1",
+    "pug": "^3.0.2",
+    "sass": "^1.53.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
-    "pug": "^3.0.2",
-    "sass": "^1.53.0",
     "vite": "^2.9.9"
   }
 }
